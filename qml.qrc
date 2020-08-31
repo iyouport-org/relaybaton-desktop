@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>icon/Media-playback-start.svg</file>
+        <file>icon/Process-stop.svg</file>
+        <file>icon/Document-save-as.svg</file>
+        <file>icon/Document-open.svg</file>
+        <file>openfile.qml</file>
+        <file>savefile.qml</file>
+        <file>error.qml</file>
+        <file>openlogfile.qml</file>
+    </qresource>
+</RCC>
