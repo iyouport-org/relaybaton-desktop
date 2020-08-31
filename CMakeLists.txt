@@ -42,6 +42,14 @@ if (ANDROID)
             config.cpp
             qml.qrc
             )
+elseif (APPLE)
+    add_executable(relaybaton-desktop MACOSX_BUNDLE
+            main.cpp
+            core.h
+            config.h
+            config.cpp
+            qml.qrc
+            )
 else ()
     add_executable(relaybaton-desktop
             main.cpp

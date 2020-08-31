@@ -539,6 +539,7 @@ ApplicationWindow {
                     var component = Qt.createComponent("qrc:/openlogfile.qml")
                     var win = component.createObject(main_window)
                     win.parent = main_window
+                    win.buttonLogFile = buttonLogFile
                     win.open()
                 }
             }
