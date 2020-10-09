@@ -15,7 +15,7 @@ FileDialog {
     property ApplicationWindow parent
     property SpinBox spinBoxClientPort
     property SpinBox spinBoxClientHTTPPort
-    property SpinBox spinBoxClientTransparentPort
+    property SpinBox spinBoxClientRedirPort
     property TextField textFieldClientServer
     property TextField textFieldClientUser
     property TextField textFieldClientPassword
@@ -40,7 +40,7 @@ FileDialog {
         }else{
             spinBoxClientPort.value=fileDialogOpen.parent.config.clientPort
             spinBoxClientHTTPPort.value=fileDialogOpen.parent.config.clientHTTPPort
-            spinBoxClientTransparentPort.value=fileDialogOpen.parent.config.clientTransparentPort
+            spinBoxClientRedirPort.value=fileDialogOpen.parent.config.clientRedirPort
             textFieldClientServer.text = fileDialogOpen.parent.config.clientServer
             textFieldClientUser.text = fileDialogOpen.parent.config.clientUsername
             textFieldClientPassword.text = fileDialogOpen.parent.config.clientPassword

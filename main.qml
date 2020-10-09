@@ -16,7 +16,7 @@ ApplicationWindow {
         }
 
     function saveConfig(){
-        return config.validateAndSave(spinBoxClientPort.value,spinBoxClientHTTPPort.value,spinBoxClientTransparentPort.value,
+        return config.validateAndSave(spinBoxClientPort.value,spinBoxClientHTTPPort.value,spinBoxClientRedirPort.value,
                          textFieldClientServer.text,textFieldClientUser.text,textFieldClientPassword.text,switchClientProxyAll.checked,
                         comboBoxDNSType.currentValue,textFieldDNSServer.text,textFieldDNSAddress.text,
                         buttonLogFile.text,comboBoxLogLevel.currentValue)
@@ -88,7 +88,7 @@ ApplicationWindow {
                         win.parent = main_window
                         win.spinBoxClientPort = spinBoxClientPort
                         win.spinBoxClientHTTPPort = spinBoxClientHTTPPort
-                        win.spinBoxClientTransparentPort = spinBoxClientTransparentPort
+                        win.spinBoxClientRedirPort = spinBoxClientRedirPort
                         win.textFieldClientServer = textFieldClientServer
                         win.textFieldClientUser = textFieldClientUser
                         win.textFieldClientPassword = textFieldClientPassword
@@ -160,7 +160,7 @@ ApplicationWindow {
                                 button_stop.enabled = true
                                 spinBoxClientPort.enabled = false
                                 spinBoxClientHTTPPort.enabled = false
-                                spinBoxClientTransparentPort.enabled = false
+                                spinBoxClientRedirPort.enabled = false
                                 textFieldClientServer.enabled = false
                                 textFieldClientUser.enabled = false
                                 textFieldClientPassword.enabled = false
@@ -193,7 +193,7 @@ ApplicationWindow {
                         button_stop.enabled = false
                         spinBoxClientPort.enabled = true
                         spinBoxClientHTTPPort.enabled = true
-                        spinBoxClientTransparentPort.enabled = true
+                        spinBoxClientRedirPort.enabled = true
                         textFieldClientServer.enabled = true
                         textFieldClientUser.enabled = true
                         textFieldClientPassword.enabled = true
@@ -279,8 +279,8 @@ ApplicationWindow {
             }
 
             Label {
-                id: labelClientTransparentPort
-                text: qsTr("Transparent Port")
+                id: labelClientRedirPort
+                text: qsTr("Redir Port")
                 Layout.fillWidth: false
                 Layout.fillHeight: true
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
@@ -289,7 +289,7 @@ ApplicationWindow {
             }
 
             SpinBox {
-                id: spinBoxClientTransparentPort
+                id: spinBoxClientRedirPort
                 value: 0
                 Layout.minimumHeight: 10
                 Layout.preferredHeight: 42

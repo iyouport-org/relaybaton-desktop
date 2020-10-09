@@ -3,13 +3,12 @@
 #include "core.h"
 
 config::config(QObject *parent) : QObject(parent) {
-
 }
 
 QString config::run() {
     int clientPort = this->getClientPort();
     int clientHTTPPort = this->getClientHttpPort();
-    int clientTransparent = this->getClientTransparentPort();
+    int clientRedir = this->getClientRedirPort();
     char *clientServer = this->QString2PtrChar(this->getClientServer());
     char *clientUsername = this->QString2PtrChar(this->getClientUsername());
     char *clientPassword = this->QString2PtrChar(this->getClientPassword());
@@ -20,7 +19,7 @@ QString config::run() {
     char *logFile = this->QString2PtrChar(this->getLogFile());
     char *logLevel = this->QString2PtrChar(this->getLogLevel());
 
-    char *ret = Run(clientPort, clientHTTPPort, clientTransparent, clientServer, clientUsername, clientPassword,
+    char *ret = Run(clientPort, clientHTTPPort, clientRedir, clientServer, clientUsername, clientPassword,
                     clientProxyAll, DNSType, DNSServer, DNSAddr, logFile, logLevel);
     return QString::fromStdString(std::string(ret));
 }
@@ -37,7 +36,7 @@ QString config::loadFile(const QUrl &filename) {
     if (std::string(conf.r12).length() == 0) {
         this->setClientPort(conf.r0);
         this->setClientHttpPort(conf.r1);
-        this->setClientTransparentPort(conf.r2);
+        this->setClientRedirPort(conf.r2);
         this->setClientServer(conf.r3);
         this->setClientUsername(conf.r4);
         this->setClientPassword(conf.r5);
@@ -58,7 +57,7 @@ QString config::saveFile(const QUrl &filename) {
     strcpy(cstr, str.c_str());
     int clientPort = this->getClientPort();
     int clientHTTPPort = this->getClientHttpPort();
-    int clientTransparent = this->getClientTransparentPort();
+    int clientRedir = this->getClientRedirPort();
     char *clientServer = this->QString2PtrChar(this->getClientServer());
     char *clientUsername = this->QString2PtrChar(this->getClientUsername());
     char *clientPassword = this->QString2PtrChar(this->getClientPassword());
@@ -68,7 +67,7 @@ QString config::saveFile(const QUrl &filename) {
     char *DNSAddr = this->QString2PtrChar(this->getDnsAddr());
     char *logFile = this->QString2PtrChar(this->getLogFile());
     char *logLevel = this->QString2PtrChar(this->getLogLevel());
-    char *ret = SaveConfFile(cstr, clientPort, clientHTTPPort, clientTransparent, clientServer, clientUsername,
+    char *ret = SaveConfFile(cstr, clientPort, clientHTTPPort, clientRedir, clientServer, clientUsername,
                              clientPassword, clientProxyAll, DNSType, DNSServer, DNSAddr, logFile, logLevel);
     QString qret = QString::fromStdString(std::string(ret));
     delete[] ret;
@@ -85,7 +84,7 @@ QString config::saveFile(const QUrl &filename) {
     return qret;
 }
 
-QString config::validateAndSave(int clientPort, int clientHttpPort, int clientTransparentPort,
+QString config::validateAndSave(int clientPort, int clientHttpPort, int clientRedirPort,
                                 const QString &clientServer, const QString &clientUsername,
                                 const QString &clientPassword,
                                 bool clientProxyAll, const QString &dnsType, const QString &dnsServer,
@@ -100,7 +99,7 @@ QString config::validateAndSave(int clientPort, int clientHttpPort, int clientTr
     char *_logFile = this->QString2PtrChar(logFile);
     char *_logLevel = this->QString2PtrChar(logLevel);
 
-    char *cstr = Validate(clientPort, clientHttpPort, clientTransparentPort,
+    char *cstr = Validate(clientPort, clientHttpPort, clientRedirPort,
                           _clientServer, _clientUsername, _clientPassword, _clientProxyAll,
                           DNSType, DNSServer, DNSAddr,
                           _logFile, _logLevel);
@@ -109,7 +108,7 @@ QString config::validateAndSave(int clientPort, int clientHttpPort, int clientTr
     if (std::string(cstr).length() == 0) {
         this->setClientPort(clientPort);
         this->setClientHttpPort(clientHttpPort);
-        this->setClientTransparentPort(clientTransparentPort);
+        this->setClientRedirPort(clientRedirPort);
         this->setClientServer(clientServer);
         this->setClientUsername(clientUsername);
         this->setClientPassword(clientPassword);
@@ -152,13 +151,13 @@ void config::setClientHttpPort(int clientHttpPort) {
     emit this->clientHTTPPortChanged();
 }
 
-int config::getClientTransparentPort() const {
-    return m_client_transparent_port;
+int config::getClientRedirPort() const {
+    return m_client_redir_port;
 }
 
-void config::setClientTransparentPort(int clientTransparentPort) {
-    m_client_transparent_port = clientTransparentPort;
-    emit this->clientTransparentPortChanged();
+void config::setClientRedirPort(int clientRedirPort) {
+    m_client_redir_port = clientRedirPort;
+    emit this->clientRedirPortChanged();
 }
 
 const QString &config::getClientServer() const {

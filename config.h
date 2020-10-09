@@ -8,7 +8,7 @@ Q_OBJECT
     Q_PROPERTY(int clientPort READ getClientPort WRITE setClientPort NOTIFY clientPortChanged)
     Q_PROPERTY(int clientHTTPPort READ getClientHttpPort WRITE setClientHttpPort NOTIFY clientHTTPPortChanged)
     Q_PROPERTY(
-            int clientTransparentPort READ getClientTransparentPort WRITE setClientTransparentPort NOTIFY clientTransparentPortChanged)
+            int clientRedirPort READ getClientRedirPort WRITE setClientRedirPort NOTIFY clientRedirPortChanged)
     Q_PROPERTY(QString clientServer READ getClientServer WRITE setClientServer NOTIFY clientServerChanged)
     Q_PROPERTY(QString clientUsername READ getClientUsername WRITE setClientUsername NOTIFY clientUsernameChanged)
     Q_PROPERTY(QString clientPassword READ getClientPassword WRITE setClientPassword NOTIFY clientPasswordChanged)
@@ -29,7 +29,7 @@ public:
 
     Q_INVOKABLE QString saveFile(const QUrl &filename);
 
-    Q_INVOKABLE QString validateAndSave(int clientPort, int clientHttpPort, int clientTransparentPort,
+    Q_INVOKABLE QString validateAndSave(int clientPort, int clientHttpPort, int clientRedirPort,
                                         const QString &clientServer, const QString &clientUsername,
                                         const QString &clientPassword,
                                         bool clientProxyAll, const QString &dnsType, const QString &dnsServer,
@@ -43,9 +43,9 @@ public:
 
     void setClientHttpPort(int clientHttpPort);
 
-    int getClientTransparentPort() const;
+    int getClientRedirPort() const;
 
-    void setClientTransparentPort(int clientTransparentPort);
+    void setClientRedirPort(int clientRedirPort);
 
     const QString &getClientServer() const;
 
@@ -89,7 +89,7 @@ signals:
 
     void clientHTTPPortChanged();
 
-    void clientTransparentPortChanged();
+    void clientRedirPortChanged();
 
     void clientServerChanged();
 
@@ -114,7 +114,7 @@ private:
 
     int m_client_port;
     int m_client_http_port;
-    int m_client_transparent_port;
+    int m_client_redir_port;
     QString m_client_server;
     QString m_client_username;
     QString m_client_password;
